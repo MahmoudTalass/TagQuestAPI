@@ -11,6 +11,7 @@ const CharacterSchema = new Schema({
       type: [{ type: Array, required: true }],
       validate: [arrayLength, "{PATH} must contain the starting y and the ending y ranges."],
    },
+   image: { type: Schema.Types.Buffer, required: true },
 });
 
 function arrayLength(array) {
