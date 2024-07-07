@@ -3,6 +3,7 @@ const Player = require("./player.model");
 class PlayerService {
    async getPlayers(pageNumber, playersPerPage) {
       const players = await Player.find({})
+         .sort({ score: 1, id: 1 })
          .skip(pageNumber * playersPerPage)
          .limit(playersPerPage)
          .exec();
