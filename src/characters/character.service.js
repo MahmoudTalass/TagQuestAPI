@@ -2,7 +2,7 @@ const Character = require("./character.model");
 
 class CharacterService {
    async getCharacters() {
-      const characters = await Character.find({}).exec();
+      const characters = await Character.find({}, { xLocationRange: 0, yLocationRange: 0 }).exec();
       return characters;
    }
 
@@ -12,4 +12,4 @@ class CharacterService {
    }
 }
 
-module.exports = CharacterService;
+module.exports = new CharacterService();
