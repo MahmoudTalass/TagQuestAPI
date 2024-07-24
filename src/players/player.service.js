@@ -1,13 +1,24 @@
 const Player = require("./player.model");
 
 class PlayerService {
-   async getPlayers(pageNumber, playersPerPage) {
+   async getPlayers(page, pageSize) {
+      // If "pageNumber" and "playersPerPage" are not sent we will default them to 1 and 50.
+      page = parseInt(page, 10) || 1;
+      pageSize = parseInt(pageSize, 10) || 50;
+
       const players = await Player.find({})
-         .sort({ score: 1, id: 1 })
-         .skip(pageNumber * playersPerPage)
-         .limit(playersPerPage)
+         .sort({ score: 1 })
+         .skip((page - 1) * pageSize)
+         .limit(20)
          .exec();
-      return players;
+      const totalPages = (await Player.countDocuments().exec()) / pageSize;
+
+      const result = {
+         metadata: { totalPages, page, pageSize },
+         data: players,
+      };
+
+      return result;
    }
 
    async getPlayer(id) {
@@ -25,4 +36,4 @@ class PlayerService {
    }
 }
 
-module.exports = PlayerService;
+module.exports = new PlayerService();
