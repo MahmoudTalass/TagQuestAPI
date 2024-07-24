@@ -3,9 +3,9 @@ const PlayerService = require("./player.service");
 
 const getPlayers = asyncHandler(async (req, res, next) => {
    const { page, pageSize } = req.query;
-   const players = await PlayerService.getPlayers(page, pageSize);
+   const result = await PlayerService.getPlayers(page, pageSize);
 
-   res.json(players);
+   res.json({ players: result });
 });
 
 const getPlayer = asyncHandler(async (req, res, next) => {
