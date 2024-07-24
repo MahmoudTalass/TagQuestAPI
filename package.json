@@ -3,14 +3,15 @@
    "version": "1.0.0",
    "scripts": {
       "start": "NODE_ENV=production node app.js",
-      "startDev": "DEBUG=blog-api:* node app.js",
+      "startDev": "DEBUG=TagQuestApi:* node app.js",
       "devStart": "nodemon app.js",
-      "serverStart": "DEBUG=blog-api:* npm run devStart"
+      "serverStart": "DEBUG=TagQuestApi:* npm run devStart"
    },
    "author": "",
    "license": "ISC",
    "description": "",
    "dependencies": {
+      "cors": "^2.8.5",
       "dotenv": "^16.4.5",
       "express": "^4.19.2",
       "express-async-handler": "^1.2.0",
