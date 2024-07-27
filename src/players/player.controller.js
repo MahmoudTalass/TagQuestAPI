@@ -24,10 +24,11 @@ const getPlayer = asyncHandler(async (req, res, next) => {
 });
 
 const createPlayer = [
-   body("name", "Must provide name with at least 1 character")
+   body("name", "Must provide name with 1-100 characters")
       .trim()
       .notEmpty()
       .isString()
+      .isLength({ max: 100 })
       .escape(),
    body("token", "Invalid token").isJWT(),
    asyncHandler(async (req, res, next) => {
