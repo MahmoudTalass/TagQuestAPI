@@ -6,6 +6,12 @@ const AppError = require("../errors/app_errors");
 
 const getPlayers = asyncHandler(async (req, res, next) => {
    const { page, pageSize } = req.query;
+   if (page < 1 || pageSize < 1) {
+      throw new AppError(
+         "Invalid page number or size. Page number and size must be 1 or more.",
+         400
+      );
+   }
    const result = await PlayerService.getPlayers(page, pageSize);
 
    res.json(result);
