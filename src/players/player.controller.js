@@ -28,7 +28,7 @@ const createPlayer = [
       .trim()
       .notEmpty()
       .isString()
-      .isLength({ max: 100 })
+      .isLength({ max: 50 })
       .escape(),
    body("token", "Invalid token").isJWT(),
    asyncHandler(async (req, res, next) => {
