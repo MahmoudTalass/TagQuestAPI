@@ -9,13 +9,13 @@ class PlayerService {
       const players = await Player.find({})
          .sort({ score: 1 })
          .skip((page - 1) * pageSize)
-         .limit(20)
+         .limit(pageSize)
          .exec();
-      const totalPages = (await Player.countDocuments().exec()) / pageSize;
+      const totalPages = Math.ceil((await Player.countDocuments().exec()) / pageSize);
 
       const result = {
          metadata: { totalPages, page, pageSize },
-         data: players,
+         players,
       };
 
       return result;
