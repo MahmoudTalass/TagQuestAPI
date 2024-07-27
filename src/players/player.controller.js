@@ -42,8 +42,6 @@ const createPlayer = [
             })
             .join("\n");
 
-         console.log(errorString);
-         console.log(errorString);
          throw new AppError(errorString, 400);
       }
 
