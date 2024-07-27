@@ -21,14 +21,12 @@ class GameService {
       const character = await CharactersService.getCharacter(characterId);
 
       const isXInRange =
-         character.xLocationRange[0] <= xLocationRange[0] &&
+         character.xLocationRange[0] <= xLocationRange[1] &&
          character.xLocationRange[1] >= xLocationRange[0];
 
       const isYInRange =
          character.yLocationRange[0] <= yLocationRange[1] &&
          character.yLocationRange[1] >= yLocationRange[0];
-      // const isXInRange = charRange.x[0] <= selectedRange.x[1] && charRange.x[1] >= selectedRange.x[0];
-      // const isYInRange = charRange.y[0] <= selectedRange.y[1] && charRange.y[1] >= selectedRange.y[0];
 
       return isXInRange && isYInRange;
    }
